@@ -13,7 +13,7 @@ function createGalleryofImages(galleryItems) {
   <img class="gallery__image" src="${preview}" alt="${description}" />
 </a>`
     })
-        .join();
+        .join("");
     return galleryImg;
 };
 

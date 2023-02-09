@@ -22,7 +22,7 @@ function createGalleryofImages(galleryItems) {
         </a>
     </div>`
     })
-        .join();
+        .join("");
     return galleryImg;
 };
 
