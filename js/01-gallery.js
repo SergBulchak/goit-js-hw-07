@@ -31,14 +31,23 @@ function onGalleryItemClick(event) {
      if (event.target.nodeName !== "IMG") {
     return;
     };
-    const imgPreview = event.target.dataset.source;
-    const imgEl = basicLightbox.create(`<img src="${imgPreview}"/>`);
-
-    imgEl.show();
-    galleryContainer.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-    imgEl.close();
+    
+    const instance = basicLightbox.create(
+    `<img src="${event.target.dataset.source}" width="800" height="600">`,
+    {
+      onShow: instance => {
+        window.addEventListener('keydown', closeModal);
+      },
+      onClose: instance => {
+        window.removeEventListener('keydown', closeModal);
+      },
+    }
+  );
+  function closeModal(event) {
+    if (event.code === 'Escape') {
+      instance.close();
+    }
   }
-});
+  instance.show();
 };
 
